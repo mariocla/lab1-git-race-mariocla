@@ -10,6 +10,8 @@ import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 
+import es.unizar.webeng.hello.services.TimeGreetingService
+
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class IntegrationTest {
     @LocalServerPort
@@ -32,18 +34,22 @@ class IntegrationTest {
     @Test
     fun `should return personalized greeting when name is provided`() {
         val response = restTemplate.getForEntity("http://localhost:$port?name=Developer", String::class.java)
+
+        val timeGreeting = TimeGreetingService().getGreeting("Developer")
         
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body).contains("Hello, Developer!")
+        assertThat(response.body).contains(timeGreeting)
     }
 
     @Test
     fun `should return API response with timestamp`() {
         val response = restTemplate.getForEntity("http://localhost:$port/api/hello?name=Test", String::class.java)
+
+        val timeGreeting = TimeGreetingService().getGreeting("Test")
         
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.headers.contentType).isEqualTo(MediaType.APPLICATION_JSON)
-        assertThat(response.body).contains("Hello, Test!")
+        assertThat(response.body).contains(timeGreeting)
         assertThat(response.body).contains("timestamp")
     }
 
