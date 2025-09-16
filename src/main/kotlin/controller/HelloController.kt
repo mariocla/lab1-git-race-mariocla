@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController
 
 import es.unizar.webeng.hello.services.TimeGreetingService
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
+
 @Controller
 class HelloController(
     @param:Value("\${app.message:Hello World}") 
