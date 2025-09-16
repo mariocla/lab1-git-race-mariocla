@@ -38,6 +38,12 @@ class HelloController(
 @RestController
 class HelloApiController {
     
+    @Operation(summary = "Devuelve un saludo basado en la hora del día")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "Saludo devuelto correctamente")
+        ]
+    )
     @GetMapping("/api/hello", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun helloApi(@RequestParam(defaultValue = "World") name: String): Map<String, String> {
 
