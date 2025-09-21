@@ -41,7 +41,7 @@ class I18nConfig : WebMvcConfigurer {
     @Bean
     fun localeResolver(): LocaleResolver {
         val localeResolver = CookieLocaleResolver("LANGUAGE")
-        localeResolver.setDefaultLocale(Locale.ENGLISH)  // Corregido: Usar el método setter público
+        localeResolver.setDefaultLocale(Locale.ENGLISH)  // Usar el método setter público
         return localeResolver
     }
 

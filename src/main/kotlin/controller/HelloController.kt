@@ -47,7 +47,7 @@ class HelloApiController {
     @GetMapping("/api/hello", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun helloApi(@RequestParam(defaultValue = "World") name: String): Map<String, String> {
 
-        val timeGreeting = TimeGreetingService().getGreeting(name)
+        val timeGreeting = TimeGreetingService().getGreeting(name) // Get greeting based on time of day
 
         return mapOf(
             "message" to timeGreeting,
